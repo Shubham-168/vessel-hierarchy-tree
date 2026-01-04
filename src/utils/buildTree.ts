@@ -1,5 +1,3 @@
-// import  {Node}  from "../data/treeData";
-
 export interface Node {
   id: string;
   name: string;
