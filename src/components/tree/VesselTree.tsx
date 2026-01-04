@@ -11,7 +11,6 @@ const nodeTypes = { pill: PillNode };
 
 export default function VesselTree() {
     const tree = useMemo(() => buildTree(rawNodes), []);
-    // const [expanded, setExpanded] = useState<any>({});
     const [expanded, setExpanded] = useState<Record<number, string>>({});
 
 
