@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+Vessel Hierarchy Tree – Frontend Interview Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project implements a Vessel Hierarchy Tree UI for 3S Smart Ship Solutions.
+It visualizes complex vessel equipment structures using a progressive drill-down interaction model inspired by the provided Figma design.
 
-Currently, two official plugins are available:
+The application is built with React + TypeScript + TailwindCSS + shadcn/ui and demonstrates scalable frontend architecture, clean state handling, and strong UX principles.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 Live Links
+Live Demo: https://vessel-hierarchy-tree.vercel.app/
+Demo Walkthrough Video: https://www.loom.com/share/f15e3fefc88141dfa4ef33006e125162
 
-## React Compiler
+✨ Features
+Progressive column-based hierarchy tree
+Expand / Collapse using + / – buttons
+Automatic sibling fading to maintain focus
+Search with auto-expand parent chain
+Curved connector lines between nodes
+Fully data-driven from JSON
+Clean sidebar with accordions
+Breadcrumb navigation
+Realistic user info footer section
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+TECH STACK
+| Technology         | Purpose                         |
+| ------------------ | ------------------------------- |
+| React + TypeScript | Core framework                  |
+| TailwindCSS        | Styling                         |
+| shadcn/ui          | Sidebar Accordion & UI elements |
+| ReactFlow          | Graph edge rendering            |
+| Lucide Icons       | Iconography                     |
+| Vite               | Build system                    |
 
-## Expanding the ESLint configuration
+Folder Structure
+src/
+ ├── data/
+ │     └── nodes.ts
+ ├── utils/
+ │     ├── buildTree.ts
+ │     ├── parentMap.ts
+ │     ├── findNode.ts
+ │     └── buildOpenPath.ts
+ ├── components/
+ │     ├── sidebar/
+ │     │     ├── Sidebar.tsx
+ │     │     └── SidebarAccordion.tsx
+ │     ├── breadcrumb/Breadcrumb.tsx
+ │     ├── search/SearchBar.tsx
+ │     └── tree/
+ │           ├── VesselTree.tsx
+ │           └── PillNode.tsx
+ ├── App.tsx
+ └── main.tsx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+How to Run Locally
+git clone https://github.com/Shubham-168/vessel-hierarchy-tree.git
+cd vessel-hierarchy-tree
+npm install
+npm run dev
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+then open:
+http://localhost:5173 (might be changed)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Architecture Overview
+1. Data Handling
+Hierarchy data is stored as a flat JSON array:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+{ id: "engine", name: "Engine", parent: "equipments" }
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This mirrors real backend responses and avoids hardcoded JSX trees.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. Tree Builder
+buildTree.ts converts flat data into nested structures for rendering.
+
+3. Progressive Expansion Logic
+expanded state tracks one active node per hierarchy level:
+
+{
+  0: "equipments",
+  1: "engine",
+  2: "main-engine-propulsion"
+}
+
+This ensures:
+Only one branch opens at a time
+Siblings fade automatically
+Layout remains clean
+
+4. Search System
+Search is powered by:
+parentMap.ts – builds parent lookup
+findNode.ts – finds matching node
+buildOpenPath.ts – auto-expands full parent chain
+Typing "Seal" instantly jumps to the Seal node and opens all parent levels.
+
+5. Rendering Engine
+VesselTree.tsx recursively builds:
+ReactFlow nodes
+Edges between parent–child pairs
+X/Y positioning based on hierarchy depth
+
+🎨 UX Principles
+Feature	Benefit
+Sibling fading	Keeps user focused
+Progressive expansion	Prevents clutter
+Breadcrumb	Navigation clarity
+Search auto-open	Fast access to deep nodes
+Curved edges	Visual hierarchy clarity
+
+⚠️ Trade-offs
+Decision	Reason
+Flat JSON data	Scales better with backend APIs
+One expanded node per level	Keeps UX clean
+ReactFlow	Used only for edges; layout controlled manually
+
+📌 Conclusion
+This project demonstrates real-world frontend engineering principles for data-heavy maritime systems.
+It is scalable, backend-ready, and designed with long-term maintainability in mind.
+
