@@ -16,7 +16,7 @@ export default function VesselTree() {
     let yMap: any = {};
 
     const build = (node: any, level = 0, parent?: string) => {
-        const key = `${level}-${node.id}`;
+
         yMap[level] = yMap[level] || 0;
 
         flow.nodes.push({

@@ -1,6 +1,11 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+interface SidebarAccordionProps {
+  title: string;
+  icon: React.ReactNode;
+}
 
-export default function SidebarAccordion({ title, icon }) {
+const SidebarAccordion: React.FC<SidebarAccordionProps> = ({ title, icon }) => {
+
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value={title}>
@@ -16,3 +21,5 @@ export default function SidebarAccordion({ title, icon }) {
     </Accordion>
   );
 }
+
+export default SidebarAccordion;
