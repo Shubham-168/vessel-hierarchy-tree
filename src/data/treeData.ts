@@ -1,52 +1,51 @@
-// import { Node, Edge } from "reactflow";
+export interface Node {
+  id: string;
+  name: string;
+  parent?: string;
+}
 
-export const nodes = [
+export const nodes: Node[] = [
   // ROOT LEVEL
-  { id: "equipments", position: { x: 80, y: 260 }, data: { label: "Equipments", type: "root" }, type: "vessel" },
+  { id: "equipments", name: "Equipments" },
 
   // LEVEL 1
-  { id: "engine", position: { x: 320, y: 260 }, data: { label: "Engine", type: "engine" }, type: "vessel" },
+  { id: "engine", name: "Engine", parent: "equipments" },
+  { id: "deck", name: "Deck", parent: "equipments" },
+  { id: "accomodation", name: "Accomodation", parent: "equipments" },
+  { id: "misc.", name: "Misc.", parent: "equipments" },
 
   // LEVEL 2
-  { id: "main-engine-propulsion", position: { x: 600, y: 80 }, data: { label: "Main Engine & Propulsion", type: "red" }, type: "vessel" },
-  { id: "power-generation", position: { x: 600, y: 150 }, data: { label: "Power Generation", type: "red" }, type: "vessel" },
-  { id: "aux-boiler", position: { x: 600, y: 220 }, data: { label: "Aux boiler", type: "red" }, type: "vessel" },
-  { id: "aux-machinery", position: { x: 600, y: 290 }, data: { label: "Aux machinary", type: "red" }, type: "vessel" },
-  { id: "electrical-automation", position: { x: 600, y: 360 }, data: { label: "Electrical & Automation", type: "red" }, type: "vessel" },
-  { id: "tank-systems", position: { x: 600, y: 430 }, data: { label: "Tank Systems", type: "red" }, type: "vessel" },
-  { id: "dp-system", position: { x: 600, y: 500 }, data: { label: "DP System", type: "red" }, type: "vessel" },
-  { id: "others", position: { x: 600, y: 570 }, data: { label: "Others", type: "red" }, type: "vessel" },
+  { id: "main-engine-propulsion", name: "Main Engine & Propulsion", parent: "engine" },
+  { id: "power-generation", name: "Power Generation", parent: "engine" },
+  { id: "aux-boiler", name: "Aux boiler", parent: "engine" },
+  { id: "aux-machinery", name: "Aux machinary", parent: "engine" },
+  { id: "electrical-automation", name: "Electrical & Automation", parent: "engine" },
+  { id: "tank-systems", name: "Tank Systems", parent: "engine" },
+  { id: "dp-system", name: "DP System", parent: "engine" },
+  { id: "others", name: "Others", parent: "engine" },
 
   // LEVEL 3
-  { id: "main-engine", position: { x: 880, y: 80 }, data: { label: "Main Engine", type: "blueDark" }, type: "vessel" },
-  { id: "propeller", position: { x: 880, y: 140 }, data: { label: "Propeller", type: "blueLight" }, type: "vessel" },
-  { id: "shafting", position: { x: 880, y: 200 }, data: { label: "Shafting", type: "blueLight" }, type: "vessel" },
+  { id: "main-engine", name: "Main Engine", parent: "main-engine-propulsion" },
+  { id: "propeller", name: "Propeller", parent: "main-engine-propulsion" },
+  { id: "shafting", name: "Shafting", parent: "main-engine-propulsion" },
 
   // LEVEL 4
-  { id: "air-exhaust", position: { x: 1160, y: 80 }, data: { label: "Air & Exhaust System", type: "gray" }, type: "vessel" },
-  { id: "control-safety", position: { x: 1160, y: 140 }, data: { label: "Control & Safety System", type: "grayLight" }, type: "vessel" },
-  { id: "fuel-system", position: { x: 1160, y: 200 }, data: { label: "Fuel System", type: "grayLight" }, type: "vessel" },
-  { id: "cooling-water", position: { x: 1160, y: 260 }, data: { label: "Cooling Water System", type: "grayLight" }, type: "vessel" },
-  { id: "cylinder-liner", position: { x: 1160, y: 320 }, data: { label: "Cylinder Liner & Lubrication", type: "grayLight" }, type: "vessel" },
+  { id: "air-exhaust", name: "Air & Exhaust System", parent: "main-engine" },
+  { id: "control-safety", name: "Control & Safety System", parent: "main-engine" },
+  { id: "fuel-system", name: "Fuel System", parent: "main-engine" },
+  { id: "cooling-water", name: "Cooling Water System", parent: "main-engine" },
+  { id: "cylinder-liner", name: "Cylinder & Lubrication", parent: "main-engine" },
 
   // LEVEL 5
-  { id: "me-turbocharger", position: { x: 1440, y: 80 }, data: { label: "ME Turbocharger", type: "darkGray" }, type: "vessel" },
-  { id: "aux-blower", position: { x: 1440, y: 140 }, data: { label: "Aux Blower", type: "grayDisabled" }, type: "vessel" },
-  { id: "aux-blower-2", position: { x: 1440, y: 200 }, data: { label: "Aux Blower 2", type: "grayDisabled" }, type: "vessel" },
-  { id: "charge-air-cooler", position: { x: 1440, y: 260 }, data: { label: "Charge Air Cooler", type: "grayDisabled" }, type: "vessel" },
-  { id: "exhaust-valve", position: { x: 1440, y: 320 }, data: { label: "Exhaust Valve Complete", type: "grayDisabled" }, type: "vessel" },
+  { id: "me-turbocharger", name: "ME Turbocharger", parent: "air-exhaust" },
+  { id: "aux-blower", name: "Aux Blower", parent: "air-exhaust" },
+  { id: "aux-blower-2", name: "Aux Blower 2", parent: "air-exhaust" },
+  { id: "charge-air-cooler", name: "Charge Air Cooler", parent: "air-exhaust" },
+  { id: "exhaust-valve", name: "Exhaust Valve Complete", parent: "air-exhaust" },
 
   // LEVEL 6
-  { id: "spare-parts-box", position: { x: 1720, y: 80 }, data: { label: "Spare Parts Box", type: "green" }, type: "vessel" },
-  { id: "seal", position: { x: 1720, y: 140 }, data: { label: "Seal", type: "green" }, type: "vessel" },
-  { id: "o-ring", position: { x: 1720, y: 200 }, data: { label: "O-Ring", type: "green" }, type: "vessel" },
-  { id: "seal-turbine", position: { x: 1720, y: 260 }, data: { label: "Seal - Turbine Side", type: "green" }, type: "vessel" },
-];
-
-export const edges = [
-  { id:'e1-2', source:'1', target:'2', type:'smoothstep' },
-  { id:'e2-3', source:'2', target:'3', type:'smoothstep' },
-  { id:'e2-4', source:'2', target:'4', type:'smoothstep' },
-  { id:'e2-5', source:'2', target:'5', type:'smoothstep' },
-  { id:'e2-6', source:'2', target:'6', type:'smoothstep' }
+  { id: "spare-parts-box", name: "Spare Parts Box", parent: "me-turbocharger" },
+  { id: "seal", name: "Seal", parent: "me-turbocharger" },
+  { id: "o-ring", name: "O-Ring", parent: "me-turbocharger" },
+  { id: "seal-turbine", name: "Seal - Turbine Side", parent: "me-turbocharger" },
 ];

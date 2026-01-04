@@ -1,10 +1,11 @@
 import SidebarAccordion from "./SidebarAccordion";
-import { LayoutGrid, Calendar, Database, Clock, Settings, LineChart, Ship, } from "lucide-react";
+import { LayoutGrid, Calendar, Database, Clock, Settings, LineChart, Ship, User } from "lucide-react";
 
 export default function Sidebar() {
     return (
-        <aside className="w-64 bg-white border- px-4 py-6 space-y-2">
-            <div className="text-4xl border-b pb-4 border-slate-300 flex font-bold mb-6">
+        <div className="flex flex-col justify-between ">
+        <aside className="w-64 bg-white flex-1 px-4 py-2 space-y-2">
+            <div className="text-4xl border-b pb-4 cursor-pointer border-slate-300 flex font-bold mb-6">
                 <span className="text-blue-400">3<span className="text-green-400">S</span></span>
                 <span className="text-black/60 pl-4 text-xl">Smart Ship Solutions</span> 
             </div>
@@ -22,5 +23,15 @@ export default function Sidebar() {
             <SidebarAccordion icon={<LineChart size={18} />} title="Reports" />
             <SidebarAccordion icon={<Settings size={18} />} title="Settings" />
         </aside>
+
+        <div className="w-64 px-4 py-3 bg-white flex gap-2 items-center ">
+            <User />
+            <div className="cursor-pointer">
+            <span className="text-md font-semibold text-black/60"> Shubham Saini </span>
+            <hr className="text-slate-300 "/>
+            <span className="text-sm font-semibold text-red-600/70"> Super Admin </span>
+            </div>
+        </div>
+        </div>
     );
 }

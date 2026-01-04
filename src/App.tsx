@@ -1,15 +1,15 @@
 import Breadcrumb from "./components/breadcrumb/Breadcrumb";
 import Sidebar from "./components/sidebar/Sidebar";
-import FlowTree from "./components/tree/FlowTree";
+import VesselTree from "./components/tree/VesselTree";
 
 export default function App() {
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen overflow-x-hidden bg-gray-50">
       <Sidebar />
       <div className="flex flex-col flex-1">
         <Breadcrumb />
-        <div className="flex-1 overflow-hidden">
-          <FlowTree />
+        <div className="flex-1">
+          <VesselTree />
         </div>
       </div>
     </div>
