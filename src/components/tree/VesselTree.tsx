@@ -5,12 +5,15 @@ import { buildTree } from "../../utils/buildTree";
 import { nodes as rawNodes } from "../../data/treeData";
 import PillNode from "./PillNode";
 import { levelColors } from "../../utils/colors";
+import SearchBar from "../search/SearchBar";
 
 const nodeTypes = { pill: PillNode };
 
 export default function VesselTree() {
     const tree = useMemo(() => buildTree(rawNodes), []);
-    const [expanded, setExpanded] = useState<any>({});
+    // const [expanded, setExpanded] = useState<any>({});
+    const [expanded, setExpanded] = useState<Record<number, string>>({});
+
 
     const flow = { nodes: [], edges: [] } as any;
     let yMap: any = {};
@@ -54,7 +57,10 @@ export default function VesselTree() {
 
     return (
         <>
-            <div className="h-[615px] rounded-2xl border border-slate-200 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+            <div className=" h-[615px] rounded-2xl border border-slate-200 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+                <div className="mt-3 ml-3">
+                    <SearchBar setExpanded={setExpanded} />
+                </div>
                 <ReactFlow nodes={flow.nodes} edges={flow.edges} nodeTypes={nodeTypes}>
                     <Background gap={16} />
                 </ReactFlow>
