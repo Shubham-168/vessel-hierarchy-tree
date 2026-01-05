@@ -16,7 +16,7 @@ export default function SearchBar({ setExpanded }: any) {
         const path = buildOpenPath(found.id, parentMap);
         setTimeout(() => {
             setExpanded(path);
-        }, 2000)
+        }, 500)
     };
 
     return (

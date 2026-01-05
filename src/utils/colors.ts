@@ -4,5 +4,7 @@ export const levelColors = [
   "bg-red-500 text-white",
   "bg-indigo-900 text-white",
   "bg-gray-400 text-white",
-  "bg-green-600 text-white"
+  "bg-green-600 text-white",
+  "bg-yellow-400 text-white",
+  "bg-pink-500 text-white",
 ];

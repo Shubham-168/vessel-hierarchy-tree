@@ -55,16 +55,21 @@ export default function VesselTree() {
     build(tree[0]);
 
     return (
-        <>
-            <div className=" h-[615px] rounded-2xl border border-slate-200 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
-                <div className="mt-3 ml-3">
-                    <SearchBar setExpanded={setExpanded} />
-                </div>
-                <ReactFlow nodes={flow.nodes} edges={flow.edges} nodeTypes={nodeTypes}>
+        <div className="h-full rounded-2xl border-2 border-slate-200 overflow-hidden bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+            <div className="p-3">
+                <SearchBar setExpanded={setExpanded} />
+            </div>
+
+            <div className="h-[calc(100%-52px)]">
+                <ReactFlow
+                    nodes={flow.nodes}
+                    edges={flow.edges}
+                    nodeTypes={nodeTypes}
+                    fitView
+                >
                     <Background gap={16} />
                 </ReactFlow>
             </div>
-            <div className="bg-white text-right text-[12px] text-slate-500 px-4 py-2"> <span className=" font-bold text-blue-300">3S</span> Smart Ship Solutions © 2025 </div>
-        </>
+        </div>
     );
 }
